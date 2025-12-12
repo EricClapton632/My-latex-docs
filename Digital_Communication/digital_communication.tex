@@ -1,0 +1,134 @@
+\documentclass[12pt,a4paper]{article}
+
+% --- 编码与字体 ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}            % 字体微调，提升排版质量
+
+% --- 页面设置 ---
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\linespread{1.25}
+
+% --- 数学相关宏包 ---
+\usepackage{amsfonts, amsmath, amssymb, amsthm, mathtools, mathrsfs, bm, mathdots}
+\usepackage{siunitx}              % 单位与数字格式化
+\sisetup{detect-all}
+
+% --- 定理环境 ---
+\usepackage{amsthm}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{proposition}[definition]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[definition]{Remark}
+\newtheorem{example}[definition]{Example}
+
+% --- 表格与列表 ---
+\usepackage{booktabs, tabularx, multirow}
+\usepackage{enumitem}            % 自定义 itemize/enumerate 格式
+
+% --- 图形与绘图 ---
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tkz-euclide}         % 欧几里得几何图形
+\usepackage{pgfplots}            % 函数图像、绘图
+\pgfplotsset{compat=1.18}
+\usepackage[all]{xy}             % 绘制交换图（如范畴论）
+
+% --- 其他工具宏包 ---
+\usepackage{caption}             % 图表标题
+\usepackage{pdflscape}           % 横向页面
+\usepackage{slashed}             % 狄拉克符号：\slashed{p}
+\usepackage[normalem]{ulem}      % 下划线、删除线等（不覆盖 \emph）
+\usepackage{alltt}               % 可插入命令的等宽文本环境
+\usepackage{imakeidx}            % 索引
+\makeindex
+
+% --- 页眉页脚与超链接 ---
+\usepackage{fancyhdr}
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\thepage}
+
+% --- 标题设置 ---
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection.}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection.}{0.5em}{}
+
+% --- 封面信息 ---
+\title{\textbf{Notes on Digital communication}}
+\author{Eric Clapton \\ \small Xidian University}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+
+
+
+% --- 正文示例 ---
+\section{Preliminaries}
+
+\begin{definition}
+	Let $A, B$ be sets. We say $A \subseteq B$ if every $a \in A$ also satisfies $a \in B$.
+\end{definition}
+
+\begin{theorem}[Pythagorean Theorem]
+	Let $a, b$ be the legs of a right triangle and $c$ the hypotenuse. Then:
+	\[
+		a^2 + b^2 = c^2.
+	\]
+\end{theorem}
+
+
+
+
+\begin{proof}
+	This follows from Euclidean geometry.
+\end{proof}
+
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+		\draw[->] (-0.2,0) -- (3.5,0) node[right] {$x$};
+		\draw[->] (0,-1.5) -- (0,1.5) node[above] {$y$};
+		\draw[domain=0:3.14, smooth, variable=\x, blue, thick] plot ({\x}, {sin(\x r)});
+	\end{tikzpicture}
+	\caption{A sine function}
+\end{figure}
+
+\begin{landscape}
+	\begin{table}[h]
+		\centering
+		\caption{Sample Data in Landscape Mode}
+		\begin{tabular}{cccc}
+			\toprule
+			$x$     & $f(x)$ & $\nabla f(x)$ & $\int f(x)\,dx$ \\
+			\midrule
+			0       & 0      & 1             & 0               \\
+			$\pi/2$ & 1      & 0             & 1               \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+\end{landscape}
+
+\begin{example}
+	Let $\slashed{p} = \gamma^\mu p_\mu$. Then $\slashed{p}^2 = p^2$ in Minkowski space.
+\end{example}
+
+\index{Pythagorean Theorem}
+\index{Sine function}
+\newpage
+\printindex
+
+
+\end{document}
+

@@ -1,0 +1,9 @@
+\beamer@sectionintoc {1}{研究背景与意义}{3}{0}{1}
+\beamer@sectionintoc {2}{研究内容与方法}{4}{0}{2}
+\beamer@sectionintoc {3}{基于接收信号强度定位的基本原理}{5}{0}{3}
+\beamer@sectionintoc {4}{基于接收信号强度的指纹定位}{8}{0}{4}
+\beamer@sectionintoc {5}{仿真环境建模}{11}{0}{5}
+\beamer@sectionintoc {6}{最小二乘法及其改进}{16}{0}{6}
+\beamer@sectionintoc {7}{KNN回归算法及其优化}{26}{0}{7}
+\beamer@sectionintoc {8}{其他机器学习方法进行定位}{47}{0}{8}
+\beamer@sectionintoc {9}{总结与展望}{52}{0}{9}

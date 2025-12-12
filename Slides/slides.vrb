@@ -1,0 +1,15 @@
+\frametitle{粒子滤波伪代码}
+        \begin{algorithm}[H]
+                \begin{algorithmic}[1]
+                        \REQUIRE 粒子集合 $\{\mathbf{x}_i\}_{i=1}^N$，权重 $\{w_i\}$，观测位置 $\mathbf{z}$
+                        \ENSURE 状态估计 $\hat{\mathbf{x}}$
+                        \STATE 粒子状态预测：$\mathbf{x}_i \leftarrow f(\mathbf{x}_i) + \text{noise}$
+                        \STATE 权重更新：$w_i \leftarrow w_i \cdot p(\mathbf{z}\mid\mathbf{x}_i)$
+                        \STATE 权重归一化
+                        \IF{$N_{\text{eff}} < N/2$}
+                        \STATE 重采样
+                        \ENDIF
+                        \STATE 估计位置：$\hat{\mathbf{x}} = \sum w_i \mathbf{x}_i$
+                \end{algorithmic}
+                \caption{粒子滤波流程}
+        \end{algorithm}

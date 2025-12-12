@@ -1,0 +1,167 @@
+\documentclass[12pt, a4paper, oneside]{book}
+
+% 数学与符号支持
+\usepackage{amsmath, amssymb, amsfonts, bm}
+\usepackage{mathrsfs}
+
+% 图形
+\usepackage{graphicx}
+
+% 页边距
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+% 标题格式
+\usepackage{titlesec}
+
+% 超链接
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+
+% 自动翻译引用前缀（cref）
+\usepackage{cleveref}
+
+% -------------------------
+
+% 定义定理环境（统一编号） - AMS 推荐风格
+
+% -------------------------
+
+\usepackage{amsthm}
+
+  
+
+% 定理类：斜体（italic）正文
+
+\theoremstyle{plain}
+
+\newtheorem{theorem}{Theorem}[section]
+
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newtheorem{proposition}[theorem]{Proposition}
+
+  
+
+% 定义类：正体（upright）正文
+
+\theoremstyle{definition}
+
+\newtheorem{definition}[theorem]{Definition}
+
+\newtheorem{example}[theorem]{Example}
+
+\newtheorem{remark}[theorem]{Remark}
+
+\newtheorem{conclusion}[theorem]{Conclusion}
+
+\newtheorem{solution}[theorem]{Solution}
+
+  
+
+% 备注类：标题斜体 + 正文正体
+
+%\theoremstyle{remark}
+
+
+% 证明环境默认存在（含自动小方块）
+
+% -------------------------
+% cleveref 中文化设置（可根据需要改为英文或保留）
+% -------------------------
+\crefname{theorem}{Theorem}{Theorems}
+\crefname{lemma}{Lemma}{Lemmas}
+\crefname{corollary}{Corollary}{Corollaries}
+\crefname{proposition}{Proposition}{Propositions}
+\crefname{definition}{Definition}{Definitions}
+\crefname{example}{Example}{Examples}
+\crefname{remark}{Remark}{Remarks}
+\crefname{equation}{Equation}{Equations}
+
+% -------------------------
+% 正文开始
+% -------------------------
+\begin{document}
+
+% -------------------------
+% 封面
+% -------------------------
+\begin{titlepage}
+  \centering
+  \includegraphics[width=0.6\textwidth]{cover.jpg}\\
+  \vspace{2cm}
+  {\Huge\bfseries Title Here\par}
+  \vspace{1.5cm}
+  {\Large Subtitle Here\par}
+  \vspace{2cm}
+  {\Large\itshape Author Name\par}
+  \vfill
+  {\large \today}
+\end{titlepage}
+
+% -------------------------
+% 前言
+% -------------------------
+\chapter*{Preface}
+\addcontentsline{toc}{chapter}{Preface}
+
+This is an example of a math document written in \LaTeX{} using \texttt{amsthm}, supporting unified numbering for theorems, definitions, and examples, with \texttt{cleveref} for auto-referencing.
+
+\vspace{1cm}
+\begin{flushright}
+--- Author
+\end{flushright}
+
+% -------------------------
+% 目录
+% -------------------------
+\tableofcontents
+
+% -------------------------
+% 正文章节示例
+% -------------------------
+\chapter{Foundations of Number Theory}
+
+\section{Basic Concepts}
+
+\begin{definition}\label{def:psquare}
+A positive integer is called a \textbf{sum-of-squares number} if it can be expressed as the sum of squares of two integers.
+\end{definition}
+
+\begin{example}\label{ex:5}
+$5 = 1^2 + 2^2$ is a sum-of-squares number.
+\end{example}
+
+\begin{theorem}\label{thm:psquare}
+The sum of squares of any two integers is non-negative.
+\end{theorem}
+
+\begin{proof}
+Let $a, b \in \mathbb{Z}$. Then $a^2 \geq 0$, $b^2 \geq 0$, so $a^2 + b^2 \geq 0$.
+\end{proof}
+
+\begin{remark}
+Theorem environments are italic by default; definitions and examples are upright, making them easier to read.
+\end{remark}
+
+\section{Cross-references}
+
+We can use \texttt{cref} to reference labeled environments with prefix, e.g., \cref{def:psquare}, \cref{thm:psquare}, and \cref{ex:5}.
+
+% -------------------------
+% 第二章示例
+% -------------------------
+\chapter{More Results}
+
+\section{Propositions and Corollaries}
+
+\begin{proposition}\label{prop:rational}
+The set of rational numbers $\mathbb{Q}$ is dense.
+\end{proposition}
+
+\begin{corollary}
+There is a rational number between any two real numbers.
+\end{corollary}
+
+\end{document}

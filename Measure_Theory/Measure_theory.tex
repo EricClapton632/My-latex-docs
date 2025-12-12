@@ -1,0 +1,589 @@
+\documentclass[12pt, a4paper,oneside]{book}
+\usepackage[UTF8]{ctex} 
+
+% Math and symbols
+\usepackage{amsmath, amssymb, amsfonts, bm}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{epigraph}  % 加在导言区
+\usepackage{titleps}
+\usepackage{mathrsfs}
+\usepackage{lipsum}
+
+
+
+
+% 链接
+\usepackage[colorlinks,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+
+\geometry{margin=2.5cm}
+
+% Colored boxes
+\usepackage[many]{tcolorbox}
+\tcbuselibrary{breakable}
+
+\title{Linear Algebra}
+\author{Eric Clapton\thanks{inspired by Pink Floyd}}
+\date{\today}
+
+% ---------- Box Environments ----------
+% Theorem
+\newtcolorbox[auto counter, number within=section]{theorem}[2][]{%
+  colback=blue!5,
+  colframe=blue!60!black,
+  colbacktitle=blue!60!black,
+  coltitle=white,
+  fonttitle=\bfseries,
+  title=Theorem~\thetcbcounter: #2,
+  enhanced,
+  breakable,
+  attach boxed title to top left={yshift=-2mm, xshift=0.5cm},
+  #1
+}
+
+% Definition
+\newtcolorbox[auto counter, number within=section]{definition}[2][]{%
+  colback=green!5,
+  colframe=green!55!black,
+  colbacktitle=green!55!black,
+  coltitle=white,
+  fonttitle=\bfseries,
+  title=Definition~\thetcbcounter: #2,
+  enhanced,
+  breakable,
+  attach boxed title to top left={yshift=-2mm, xshift=0.5cm},
+  #1
+}
+
+% Lemma
+\newtcolorbox[auto counter, number within=section]{lemma}[2][]{%
+  colback=cyan!5,
+  colframe=cyan!60!black,
+  colbacktitle=cyan!60!black,
+  coltitle=white,
+  fonttitle=\bfseries,
+  title=Lemma~\thetcbcounter: #2,
+  enhanced,
+  breakable,
+  attach boxed title to top left={yshift=-2mm, xshift=0.5cm},
+  #1
+}
+
+% Proposition
+\newtcolorbox[auto counter, number within=section]{proposition}[2][]{%
+  colback=orange!5,
+  colframe=orange!75!black,
+  colbacktitle=orange!75!black,
+  coltitle=white,
+  fonttitle=\bfseries,
+  title=Proposition~\thetcbcounter: #2,
+  enhanced,
+  breakable,
+  attach boxed title to top left={yshift=-2mm, xshift=0.5cm},
+  #1
+}
+
+% Corollary
+\newtcolorbox[auto counter, number within=section]{corollary}[2][]{%
+  colback=purple!5,
+  colframe=purple!60!black,
+  colbacktitle=purple!60!black,
+  coltitle=white,
+  fonttitle=\bfseries,
+  title=Corollary~\thetcbcounter: #2,
+  enhanced,
+  breakable,
+  attach boxed title to top left={yshift=-2mm, xshift=0.5cm},
+  #1
+}
+
+% Example
+\newtcolorbox[auto counter, number within=section]{example}[2][]{%
+  colback=yellow!5,
+  colframe=yellow!60!black,
+  colbacktitle=yellow!60!black,
+  coltitle=black,
+  fonttitle=\bfseries,
+  title=Example~\thetcbcounter: #2,
+  enhanced,
+  breakable,
+  attach boxed title to top left={yshift=-2mm, xshift=0.5cm},
+  #1
+}
+
+% Proof
+\newtcolorbox{proof}[1][]{%
+  colback=pink!10,
+  colframe=pink!80!black,
+  colbacktitle=pink!70!black,
+  coltitle=white,
+  fonttitle=\bfseries,
+  title=Proof,
+  enhanced,
+  breakable,
+  attach boxed title to top left={yshift=-2mm, xshift=0.5cm},
+  before upper={},
+  after upper={\hfill$\square$},
+  #1
+}
+
+% solution
+\newtcolorbox[auto counter, number within=section]{solution}[2][]{%
+  colback=gray!10,
+  colframe=gray!70!black,
+  colbacktitle=gray!70!black,
+  coltitle=white,
+  fonttitle=\bfseries,
+  title=Solution~\thetcbcounter: #2,
+  enhanced,
+  breakable,
+  attach boxed title to top left={yshift=-2mm, xshift=0.5cm},
+  #1
+}
+
+% Conclusion
+\newtcolorbox[auto counter, number within=section]{conclusion}[2][]{%
+  colback=red!5,
+  colframe=red!60!black,
+  colbacktitle=red!60!black,
+  coltitle=white,
+  fonttitle=\bfseries,
+  title=Conclusion~\thetcbcounter: #2,
+  enhanced,
+  breakable,
+  attach boxed title to top left={yshift=-2mm, xshift=0.5cm},
+  #1
+}
+
+% Exercise
+\newtcolorbox[auto counter, number within=section]{exercise}[2][]{%
+  colback=blue!5,
+  colframe=blue!60!black,
+  colbacktitle=blue!60!black,
+  coltitle=white,
+  fonttitle=\bfseries,
+  title=Exercise~\thetcbcounter: #2,
+  enhanced,
+  breakable,
+  attach boxed title to top left={yshift=-2mm, xshift=0.5cm},
+  #1
+}
+
+% Remark
+\newtcolorbox[auto counter, number within=section]{remark}[2][]{%
+  colback=purple!5,
+  colframe=purple!60!black,
+  colbacktitle=purple!60!black,
+  coltitle=white,
+  fonttitle=\bfseries,
+  title=Remark~\thetcbcounter: #2,
+  enhanced,
+  breakable,
+  attach boxed title to top left={yshift=-2mm, xshift=0.5cm},
+  #1
+}
+
+% Axiom
+\newtcolorbox[auto counter, number within=section]{axiom}[2][]{%
+  colback=magenta!5,
+  colframe=magenta!60!black,
+  colbacktitle=magenta!60!black,
+  coltitle=white,
+  fonttitle=\bfseries,
+  title=Axiom~\thetcbcounter: #2,
+  enhanced,
+  breakable,
+  attach boxed title to top left={yshift=-2mm, xshift=0.5cm},
+  #1
+}
+
+
+
+\begin{document}
+
+
+\begin{titlepage}
+  \centering
+  \includegraphics[width=0.6\textwidth]{cover.jpg}\\
+  \vspace{2cm}
+  {\Huge\bfseries Notes for Measure theory\par}
+  \vspace{1.5cm}
+  {\Large Based on \textit{Measure Theory} by Donald.Cohn \par}
+  \vspace{2cm}
+  {\Large\itshape Eric Clapton\par}
+  \vfill
+  {\large  \today}
+\end{titlepage}
+
+\chapter*{Preface}
+\addcontentsline{toc}{chapter}{Preface}
+
+The cover is from the album \textbf{\textit{Orange Moon}} by \textit{Khalil Fong}. The note 
+is based on \textit{Measure Theory} by Donald.Cohn, \textit{Set Theory} by Jech.
+
+\vspace{1cm}
+\begin{flushright}
+    --- Eric
+\end{flushright}
+
+\tableofcontents
+
+
+
+
+\chapter{Introduction}
+
+\setlength{\unitlength}{1pt}
+\setlength{\epigraphwidth}{9cm}
+
+\epigraph{“也许是天气，也许是运气，也许是因为有人不放弃。”}{\textit{— 方大同, 《因为你》}}
+
+
+\section{Riemann integral -- Darboux's Definition}
+
+ Let $[a,b]$ be a closed bounded interval. A \textbf{partition} of $[a,b]$ 
+ is a \textbf{finite sequence} $\{a_i\}_{i=0}^k$ of real numbers such that 
+ \begin{equation}
+ a=a_0<a_1<\cdots <a_k=b
+    \end{equation}
+    we call the value $a_i$ the \textit{division points} of the partition. 
+    the partition is denoted by a symbol $\mathscr{P}$. \par 
+    Suppose that $f$ is a bounded real-valued function on $[a,b]$ 
+    and that $\mathscr{P}$ is a partition of $[a,b]$, say with division points 
+    $\{a_i\}_{i=0}^k$. We define $m_i$ and $M_i$ by $m_i=inf\{{f(x):x\in [a_{i-1},a_i]}\}$ 
+    and $M_i=sup\{f(x):x\in [a_{i-1},a_i]\}$. Then the \textit{lower sum} is define 
+    to be $\sum_{i=1}^k m_i(a_i-a_{i-1})$ and the \textit{upper sum} is defined 
+    to be $\sum_{i=1}^k M_i(a_i-a_{i-1})$.\par
+    Since $f$ is bounded, so there are $m$ and $M$ such that $m\leq f \leq M$. So the lower sum satisfies
+    \begin{equation}
+        \sum_{i=1}^k m_i(a_i-a_{i-1})\leq \sum_{i=1}^k M_i(a_i-a_{i-1})=M(b-a)
+    \end{equation}
+    So the set of lower sums of $f$ which denoted by $\underline{\int}_{a}^{b}$ has a supremum. Similarly, the upper 
+    sums of $f$ which denoted by $\overline{\int}_{a}^{b}$ has a infimum. If $\underline{\int}_{a}^{b}=\overline{\int}_{a}^{b}$, which means that
+    when the number of division points tends to infinity, the lower sum equals the upper sum, then $f$ is said 
+    to be \textit{Riemann integrable} on $[a,b]$.
+    
+    \section{Riemann Integral -- Riemann's Definition}
+    A \textit{tagged partition} of an interval $[a,b]$ is a partition $\{a_i\}_{i=0}{k}$ of $[a,b]$, 
+    together with a sequence $\{x_i\}_{i=1}{k}$ of \textit{tags} 
+    such that $a_{i-1}\leq x_i \leq a_i$ holds for $i=1,\cdots,k$. \par
+    The \textit{mesh} $\|\mathscr{P}\|$ of a partition $\mathscr{P}$ is defined by $\|\mathscr{P}\|=max_i(a_i-a_{i-1})$, 
+    THe mesh of a partition is the length of the longest of its subintervals. \par
+    The Riemann sum $\mathscr{R}(f,\mathscr{P})$ is defined by 
+    \begin{equation}
+      \mathscr{R}(f,\mathscr{P})=\sum_{i=1}^{k}f(x_i)(a_i-a_{i-1})
+    \end{equation}
+    If there is a number $L$ such that 
+    \begin{equation}
+      \lim_{\mathscr{P}}\mathscr{R}(f,\mathscr{P})=L
+    \end{equation}
+    The limit is taken as the \textit{mesh} of $\mathscr{P}$ approachs 0.\par
+    Darboux's and Riemann's definition are equivalent.Every continuous function on 
+    $[a,b]$ is Riemann integrable.
+
+    \begin{theorem}{The Fundamental Theorem of Calculus}
+      Suppose that $f:[a,b]\rightarrow \mathbb{R}$ is continuous and that 
+      $F:[a,b]\rightarrow \mathbb{R}$ is defined by $F(x)=\int_{a}^{x}f(t)dt$. 
+      Then $F$ is differentiable at each $x$ in $[a,b]$ and its derivative is given by
+      $F'(x)=f(x)$.
+    \end{theorem}
+
+    \section{From Riemann to Lebesgue}
+    In many situations, it's necessary to reverse the order of taking limits and 
+    evaluating integrals, which means that
+    \begin{equation}
+      \int_{a}^{b} \lim_{n}f_n(x)dx=\lim_{n}\int_{a}^{b}f_n(x)dx
+    \end{equation}
+    We need a theorem about that. 
+    \begin{theorem}{When can we reverse the order of limit and integral}
+    
+      Suppose that $\{f_n(x)\}$ is a sequence of integrable functions on the 
+      interval $[a,b]$ and that $f$ is a function that $\{f_n\}$ converges to $f$ 
+      in a suitable \footnote{Of course we should figure out what "suitable" means}
+      Then $f$ is integrable and 
+      \begin{equation}
+        \int_{a}^{b}f(x)dx=\lim_{n}\int_{a}^{b}f_n(x)dx 
+      \end{equation} 
+      \begin{equation}
+        f(x)=\lim_{n}f_n(x)
+      \end{equation}
+      which means that$\int_{a}^{b}\lim_{n}f_n(x)=\lim_{n}\int_{a}^{b}f_n(x)dx$ 
+    \end{theorem}
+    If the converge is \textit{"converge uniformly"}\footnote{We will figure it out later}, we would say the theorem is valid 
+    for the Riemann integral.\par 
+    But if it is only pointwise\footnote{$
+    \{f_n\}$ converges pointwise to $f$ on $[a,b]$ if $\lim_{n}f_n(x)=f(x)$ for each $x$ in $[a,b]$
+    } converge. Then the theorem may fail. 
+
+    \begin{example}{a example that makes Theorem 1.3.1 fail}
+      For each positive integer $n$ let $f_n$ be a piecewise linear function分段线性函数
+      on $[0,1]$ whose graph is made up of three line segments, connecting the points 
+      $(0,0),(\frac{1}{2n},2n),(\frac{1}{n},0)$ and $(1,0)$. Then for each n the triangle formed by the
+      graph of $f_n$ and the $x$-axis has area 1. So for every $f_n$ we have $\int_{0}^{1}f_n(x)=1$.
+      but $\int_{0}^{1} \lim_{n}f_n(x)dx$ doesn't exist in Riemann integrals, which means that 
+      $\int_{a}^{b}\lim_{n}f(x)dx \neq \lim_{n} \int_{a}^{b}f_n(x) $
+      So Theorem 1.3.1 fails in this example. 
+    \end{example}
+
+    \begin{remark}{Explaination}
+      But why did it fail? It's because $f_n(x)$ is not bounded uniformly, which means that there
+      exist a $M$ and $|f_n(x)|\leq M$ holds for all $n$ and $x$.
+    \end{remark}
+
+    Next we look at an example in which the $f_n$ are uniformly bounded but the theorem still fails. 
+   
+    \begin{example}{A bounded function but not Riemann integrable}
+      Since rational numbers are \textit{countable}.
+
+
+      for each $n$ we define a function $f_n(x):[0,1]\rightarrow \mathbb{R}$ by
+      \begin{equation}
+        f_n(x) = 
+        \begin{cases}
+          1 & \text{if } x \in \mathbb{Q} \cap [0,1] \\
+          0 & \text{if } x \in (\mathbb{R} \setminus \mathbb{Q}) \cap [0,1]
+        \end{cases}
+      \end{equation}
+      Since the rationals are \textbf{dense} in $[0,1]$. 
+      So the $\underline{\int}_{0}^{1}=0$ and $\overline{\int}_{0}^{1}=1$. 
+      So $f$ is not Riemann integrable. 
+      
+
+    \end{example}
+
+    \begin{example}{The difficulty to make Theorem 1.3.1 valid}
+      The difficulty in the previous example comes from the fact 
+      that the $f_n$ fail to be continuous.But you can also produce a sequence $\{f_n(x)\}$ 
+      such that 
+      \begin{enumerate}
+      \item each $f_n(x)$ is continuous, 
+      \item $0\leq f_n(x)\leq 1$ holds for each $n$ and $x$
+      \item $\{f_n(x)\}$ converges pointwise to a function that is not Riemann integrable.
+      \end{enumerate}
+    \end{example}
+
+    Lebesgue showed that Theorem 1.3.1, when formulated in terms of his new integral,
+  holds for pointwise convergence of the sequence ${f_n}$, subject only to some rather
+  natural boundedness conditions on that sequence. \par
+    The definition of Riemann Integral deals with partition of the interval $[a,b]$, 
+  which is the domain of $f$. But the Lebesgue Integral deals with the partition of the range of $f$. \par
+    Suppose we have $c$ to be a positive number and $0\leq f(x)\leq c$ holds for $x\in [a,b]$.
+  Suppose that $\mathscr{p}$ is a partition of $[0,c]$, and we have
+  \begin{equation}
+    A_i={x\in[a,b]:f(x)\in [a_{i-1},a_i)}
+  \end{equation}
+  the set $A_i$ can be empty, unions of finite collection of subintervals, or even more complicated sets. 
+  the sum $s(f,\mathscr{P})$ is given by
+  \begin{equation}
+    s(f,\mathscr{P})=\sum_{i=1}^{k}a_{i-1}meas(A_i)
+  \end{equation}
+
+  meas($A_i$)is the \textbf{size} of the \textbf{set $A_i$}. 
+  How to define the size of set is the problem we need to solve. 
+
+  \chapter{Measures}
+  \setlength{\unitlength}{1pt}
+  \setlength{\epigraphwidth}{9cm}
+
+  \epigraph{“人间的青草地需要浇水，内心的花园就不会枯萎。”}{\textit{— 方大同, 《每个人都会》}}
+
+  \section{Algebras and Sigma-Algebras}
+  \begin{definition}{Algebra}
+    Let $X$ is an arbitrary set.A collection $\mathscr{A}$ of subsets of $X$ is an 
+    \textit{algebra} on $X$ if 
+    \begin{enumerate}
+      \item  $X\in \mathscr{A}$,
+      \item for each set $A$ that belongs to $\mathscr{A}$, the set $A^c$ belongs to $\mathscr{A}$. 
+      \item for each finite sequence $A_1\cdots,A_n$ of sets that belongs to $\mathscr{A}$, the set $\cup_{i=1}^n A_i$ 
+      belongs to $\mathscr{A}$, and 
+      \item for each finite sequence $A_1\cdots,A_n$ of sets that belongs to $\mathscr{A}$, the set $\cap_{i=1}^n A_i$ 
+      belongs to $\mathscr{A}$. 
+    \end{enumerate}
+  \end{definition}
+   From the definition we can find out that $\mathscr{A}$ is closed under complementation, finite unions有限并集 and finite intersections有限交集 
+   and condition(3) is equal to condition(4) under condition(2), because 
+   $\cap_{i=1}^nA_i=(\cup_{i=1}^nA_i^c)^c$
+
+   \begin{definition}{$\sigma$-Algebra}
+    Let $X$ is an arbitrary set.A collection $\mathscr{A}$ of subsets of $X$ is an 
+    \textit{$\sigma$-algebra} on $X$ if
+    \begin{enumerate}
+      \item  $X\in \mathscr{A}$,
+      \item for each set $A$ that belongs to $\mathscr{A}$, the set $A^c$ belongs to $\mathscr{A}$. 
+      \item for each countable infinite sequence $\{A_i\}$ of sets that belongs to $\mathscr{A}$, the set $\cup_{i=1}^{\infty} A_i$ 
+      belongs to $\mathscr{A}$, and 
+      \item for each countable infinite sequence $\{A_i\}$ of sets that belongs to $\mathscr{A}$, the set $\cap_{i=1}^{\infty} A_i$ 
+      belongs to $\mathscr{A}$. 
+    \end{enumerate}
+   \end{definition}
+   From the definition we can find out that $\mathscr{A}$ is closed under complementation, countable unions可数并集 and countable intersections可数交集 
+   Note that, as in the case of algebras, we could
+have used only conditions (1), (2), and (3), or only conditions (1), (2), and (4), in our
+definition. 
+   \begin{remark}{Each $\sigma$-Algebra on $X$ is an algebra on $X$}
+    the union of the finite sequence $A_1,A_2,\cdots,A_n$ is the same as the 
+    union of the infinite sequence $A_1,A_2,\cdots,A_n,A_n,A_n,\cdots$
+   \end{remark}
+
+   Thus in the definitions of algebras and $\sigma$-algebras given above, we can replace condition (1) with the
+requirement that $\phi$ be a member of $\mathscr{A}$ . Furthermore, if $\mathscr{A}$ is a family of subsets of
+$X$ that is nonempty, closed under complementation, and closed under the formation
+of finite or countable unions, then $\mathscr{A}$ must contain $X$: if the set $A$ belongs to $\mathscr{A}$, then
+$X$, since it is the union of $A$ and $A^c$, must also belong to $\mathscr{A}$ . Thus in our definitions
+of algebras and $\sigma$-algebras, we can replace condition (1) with the requirement that
+$\mathscr{A}$ be nonempty.\par
+   If $\mathscr{A}$ is a $\sigma$-algebra on $X$, we call a subset of $X$ $\mathscr{A}-Measurable$
+if it belongs to $\mathscr{A}$.
+\begin{example}{Some example of Families of sets}
+
+  \begin{enumerate}
+    
+    \item Let $X$ be a set, and let $\mathscr{A}$ be the collection of all 
+    subsets of $X$. Then $\mathscr{A}$ is a $\sigma$-algebra of $X$.
+    
+    \item Let $X$ be a infinite set, and let $\mathscr{A}$ be the collection of all 
+    subsets $A$ of $X$ such that either $A$ or $A^c$ is finite. Then $\mathscr{A}$ is an 
+    algebra on $X$ but is not closed under countable unions; hence it's not a $\sigma $-algebra.
+    
+    \item Let $X$ be a set, and let $\mathscr{A}$ be the collection of all subsets $A$ of $X$ 
+    such that $X$ such that either $A$ or $A^c$ is countable. Then $\mathscr{A}$ is a $\sigma$-algebra.         
+  
+    \item Let $\mathscr{A}$ be the collection of all subsets of $\mathbb{R}$ that are unions of 
+    finitely many intervals of the form $(a,b]$, $(a,+\infty)$ or $(-\infty,b]$. The $\mathscr{A}$ is an algebra 
+    but is not an $\sigma$-algebra. Suppose we have $A_n=(0,2-\frac{1}{n}]$, for every certain n, $A_n\in \mathscr{A}$, 
+    but $\cup_{i=1}^\infty A_i =(0,2)\notin \mathscr{A}$. So it's not an $\sigma$-algebra.             
+  
+  \end{enumerate}
+
+\end{example}
+    
+  Now let's consider way of constructing $\sigma$-algebra.
+  \begin{proposition}{constructing $\sigma$-algebra}
+    Let $X$ be a set. Then the intersection of an arbitrary nonempty collection of $\sigma$-algebras 
+    on $X$ is a $\sigma$-algebra on $X$.                 
+  \end{proposition}
+
+  \begin{proof}
+    This proof is easy so I just ignore it.         
+  \end{proof}
+
+  We should notice that the union of a family of $\sigma$-algebra may not be a $\sigma$-algebra. From the proof we can
+  see that the key is that the property of intersection makes the transition of sets possible, but union may not succeed in doing this.
+  
+  \begin{corollary}{$\sigma$-algebra on $X$ includes a family subsets of $X$ }
+    Let $X$ be a set, and let $\mathscr{F}$ be a family of subsets of $X$. Then there 
+    is a smallest $\sigma$-algebra on $X$ that includes $\mathscr{F}$.      
+    
+  \end{corollary}
+
+  \begin{remark}{smallest $\sigma$-algebra}
+    When we say the \textit{smallest} $\sigma$-algebra(denoted by $\mathscr{A}$ ) that includes $\mathscr{F}$, we are saying that
+    any $\sigma$-algebra that includes $\mathscr{F}$ also includes $\mathscr{A}$.
+    The smallest $\sigma$-algebra is called the $\sigma$-algebra \textit{generated by $\mathscr{F}$} 
+    and denoted by $\sigma(\mathscr{F})$.       
+
+  \end{remark}
+
+  \begin{proof}
+    Let $\mathscr{L}$ be the collection of all the $\sigma$-algebra that include $\mathscr{F}$. 
+    Then $\mathscr{L}$ is nonempty, since it contains the $\sigma$-algebra that consists of all subsets of 
+    $X$. Based on the preceding proposition. The intersection of these $\sigma$-algebras which belongs to $\mathscr{L}$ is also a 
+    $\sigma$-algebra. It includes $\mathscr{F}$ and is included in every $\sigma$-algebra in $\mathscr{L}$.        
+  \end{proof}
+   
+   \begin{definition}{Borel $\sigma$-algebra on $\mathbb{R}^d$  }
+    The \textit{Borel} $\sigma$-algebra on $\mathbb{R}^d$ is the $\sigma$-algebra on $\mathbb{R}^d$ 
+    generated by the collection of open subsets of $\mathbb{R}^d$. 
+    It is denoted by $\mathscr{B}(\mathbb{R}^d)$. The \textit{Borel subsets} of $\mathbb{R}^d$ 
+    are those that belong to $\mathscr{B}(\mathbb{R}^d)$.          
+   \end{definition}
+
+   \begin{proposition}{generating Borel $\sigma$-algebra}
+    The $\sigma$-algebra $\mathscr{B}(\mathbb{R})$ of Borel subsets of $\mathbb{R}$ is generated 
+    by each of the following collections of sets:
+    \begin{enumerate}
+      \item the collection of all closed subsets of $\mathbb{R}$.
+      \item the collection of all subintervals of $\mathbb{R}$ of the form $(-\infty,b]$.
+      \item the collection of all subintervals of $\mathbb{R}$ of the form $(a,b]$.
+    \end{enumerate}
+        
+   \end{proposition}
+   
+  
+   \begin{proof}
+    Let $\mathscr{B}_1,\mathscr{B}_2$,and $\mathscr{B}_3$ be the $\sigma$-algebras 
+    generated by the collections of sets in parts (1),(2), and (3) of the proposition. 
+    We will show that $\mathscr{B}(\mathbb{R})\supseteq\mathscr{B}_1\supseteq\mathscr{B}_2\supseteq\mathscr{B}_3$ and then that $\mathscr{B}_3\supseteq\mathscr{B}(\mathbb{R});$ 
+    this will establish the proposition. Since $\mathscr{B}(\mathbb{R})$ includes the family of open subsets of $\mathbb{R}$ and is closed under complementation, it includes the family of closed subsets of $\mathbb{R};$ thus it includes the $\sigma$-algebra generated by the closed subsets of $\mathbb{R}$, namely $\mathscr{B}_1.$ The sets of the form $(-\infty,b]$ are closed and so belong to $\mathscr{B}_1;$ consequently $\mathscr{B}_1\supseteq\mathscr{B}_2.$ Since $(a,b]=(-\infty,b]\cap(-\infty,a]^c$,each set of the form $(a,b]$ belongs to $\mathscr{B}_2;$ thus $\mathscr{B}_2\supseteq\mathscr{B}_3.$ Finally, note that each open subinterval of $\mathbb{R}$ is the union of a sequence of sets of the form $(a,b]$ and that each open subset of $\mathbb{R}$ is the union of a sequence of open intervals (this proof needs the dense property of rational numbers). 
+    Thus each open subset of $\mathbb{R}$ belongs to $\mathscr{B}_3$, and so $\mathscr{B}_3\supseteq\mathscr{B}(\mathbb{R}).$
+   \end{proof}
+
+   The Borel $\sigma$-algebra $\mathscr{B}(\mathbb{R})$ contains virtually every subset of 
+   $\mathbb{R}$ that is interest of analysis, and it's small enough that it can be dealt 
+   with in a fairly constructive manner.\par   
+   
+   Let $\mathscr{G}$ be the family of all open subsets of $\mathbb{R}^d$, and let $\mathscr{F}$ be the family of all 
+   closed subsets of $\mathbb{R}^d$. Let $\mathscr{G}_\delta$ be the collection of all intersections of 
+   sequence of sets in $\mathscr{G}$. Let $\mathscr{F}_\sigma$ be the collection of all intersections of 
+   sequence of sets in $\mathscr{F}$. Sets in $\mathscr{G}_\delta$ are often called $G_\delta 's$, sets in $\mathscr{F}\sigma$ 
+   are called $F_\sigma 's$.
+   
+   \begin{proposition}{Each closed subset of $\mathbb{R}^d$ is a $G_\delta$}
+    \begin{proof}
+      suppose $F$ is a closed set in $\mathbb{R}^d$, construct open a sequence $\{U_n\}$ 
+      of open subsets of $\mathbb{R}^d$ such that $F=\cap_n U_n$. We define $U_n$ by:
+      $$ U_n = \{x\in \mathbb{R}^d: \|x-y\|< 1/n \  \text{for some} \  y \  \text{in} \ F\} $$      
+       
+    
+    \end{proof}
+    
+   \end{proposition}
+   
+  \begin{proposition}{Each open subset of $\mathbb{R}^d$ is an $\mathscr{F}_\sigma$}
+    \begin{proof}
+      If $U$ is an open set, then $U^c$ is a closed set, so $U^c$ is a $G_\delta$. 
+      Therefore there is a sequence $\{U_n\}$ of open sets such that $U^c=\cap_n U_n$. 
+      Based on De Morgan's Law, $U$ is an $F_\sigma$.       
+    \end{proof}
+  \end{proposition}
+  
+  A sequence $\{A_i\}$ of sets is called \textit{increasing} if $A_i\subseteq A_{i+1}$ holds 
+  for each $i$ and \textit{decreasing} if $A_{i+1}\subseteq A_i$ holds for each $i$.
+  
+  \begin{proposition}{When can algebra be $\sigma$-algebra?  }
+    Let $X$ be a set, and let $\mathscr{A}$ be an algebra on $X$. Then 
+    $\mathscr{A}$ is a $\sigma$-algebra if either:
+    \begin{enumerate}
+      \item $\mathscr{A}$ is closed under the formation of unions of increasing sequences of sets, or
+      \item $\mathscr{A}$ is closed under the formation of intersections of decreasing sequences of sets.  
+    \end{enumerate}
+        \begin{proof}
+          Since $\mathscr{A}$ is an algebra, Suppose $\{A_i\}$ is a sequence of sets that belong to $\mathscr{A}$. 
+          For each $n$ let $B_n=\cup_{i=1}^n A_i$. The sequence $\{B_n\}$ is increasing, since $\mathscr{A}$ is an algebra. 
+          each $B_n$ belongs to $\mathscr{A}$. The assumption(1) implies that $\cup_n B_n$ belongs to $\mathscr{A}$. 
+          However $\cup_i A_i$ is equal to $\cup_n B_n$ and so belongs to $\mathscr{A}$. So $\mathscr{A}$ is an 
+          $\sigma$-algebra.\par
+          If $\{A_i\}$ is an increasing sequence of sets that belong to $\mathscr{A}$, then $\{A_i^c\}$ is a decreasing 
+          sequence of sets that belong to $\mathscr{A}$, so condition(2) implies $\cap_i A_i^c$ belongs to 
+          $\mathscr{A}$. Since $\cup_i A_i = (\cap_i A_i^c)^c$, so $\cup_i A_i$ belongs to $\mathscr{A}$. So we 
+          have $\mathscr{A}$ is a $\sigma$-algebra.          
+        \end{proof}
+        
+  \end{proposition}
+  
+\section{Measures}
+   
+ 
+
+
+\chapter*{References}
+\addcontentsline{toc}{chapter}{References}
+
+
+\bibliographystyle{plain}
+\bibliography{reference-marks}
+
+
+\end{document}

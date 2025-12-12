@@ -1,0 +1,7 @@
+\contentsline {chapter}{Preface}{1}{chapter*.1}%
+\contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Abstraction}{3}{section.1.1}%
+\contentsline {chapter}{\numberline {2}Sentential Logic}{4}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Language of Sentential Logic}{4}{section.2.1}%
+\contentsline {chapter}{\numberline {3}More Results}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Propositions and Corollaries}{5}{section.3.1}%

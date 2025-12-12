@@ -1,0 +1,193 @@
+\documentclass[12pt, a4paper, oneside]{book}
+
+% 数学与符号支持
+\usepackage{amsmath, amssymb, amsfonts, bm}
+\usepackage{mathrsfs}
+\usepackage{enumitem}
+
+% 图形
+\usepackage{graphicx}
+
+% 页边距
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+% 标题格式
+\usepackage{titlesec}
+
+% 超链接
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+
+% 自动翻译引用前缀（cref）
+\usepackage{cleveref}
+
+% -------------------------
+
+% 定义定理环境（统一编号） - AMS 推荐风格
+
+% -------------------------
+
+\usepackage{amsthm}
+
+  
+
+% 定理类：斜体（italic）正文
+
+\theoremstyle{plain}
+
+\newtheorem{theorem}{Theorem}[section]
+
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newtheorem{proposition}[theorem]{Proposition}
+
+  
+
+% 定义类：正体（upright）正文
+
+\theoremstyle{definition}
+
+\newtheorem{definition}[theorem]{Definition}
+
+\newtheorem{example}[theorem]{Example}
+
+\newtheorem{remark}[theorem]{Remark}
+
+\newtheorem{conclusion}[theorem]{Conclusion}
+
+\newtheorem{solution}[theorem]{Solution}
+
+  
+
+% 备注类：标题斜体 + 正文正体
+
+%\theoremstyle{remark}
+
+
+% 证明环境默认存在（含自动小方块）
+
+% -------------------------
+% cleveref 中文化设置（可根据需要改为英文或保留）
+% -------------------------
+\crefname{theorem}{Theorem}{Theorems}
+\crefname{lemma}{Lemma}{Lemmas}
+\crefname{corollary}{Corollary}{Corollaries}
+\crefname{proposition}{Proposition}{Propositions}
+\crefname{definition}{Definition}{Definitions}
+\crefname{example}{Example}{Examples}
+\crefname{remark}{Remark}{Remarks}
+\crefname{equation}{Equation}{Equations}
+
+% -------------------------
+% 正文开始
+% -------------------------
+\begin{document}
+
+% -------------------------
+% 封面
+% -------------------------
+\begin{titlepage}
+  \centering
+  \includegraphics[width=0.6\textwidth]{cover.jpg}\\
+  \vspace{2cm}
+  {\Huge\bfseries Logic\par}
+  \vspace{1.5cm}
+  {\Large introduction to symbol logic\par}
+  \vspace{2cm}
+  {\Large\itshape Eric Clapton\par}
+  \vfill
+  {\large \today}
+\end{titlepage}
+
+% -------------------------
+% 前言
+% -------------------------
+\chapter*{Preface}
+\addcontentsline{toc}{chapter}{Preface}
+
+This is an example of a math document written in \LaTeX{} using \texttt{amsthm}, supporting unified numbering for theorems, definitions, and examples, with \texttt{cleveref} for auto-referencing.
+
+\vspace{1cm}
+\begin{flushright}
+--- Eric
+\end{flushright}
+
+% -------------------------
+% 目录
+% -------------------------
+\tableofcontents
+
+% -------------------------
+% 正文章节示例
+% -------------------------
+\chapter{Introduction}
+
+\section{Abstraction}
+
+\begin{example}
+  Models are constructed by abstraction.
+  \begin{center}
+    All men are mortal. \\
+    Socrates is a man. \\
+    Therefore, Socrates is mortal. \\
+  \end{center}
+\end{example}
+
+In this example, the conclusion is depended only on the \textbf{form} of the sentences. 
+What Socrates and mortal means is not important, it does matter what \textbf{"All"} means. 
+The logical correctness of these deductions is due to their form but is independent of their content. 
+This criterion is vague, but it is just this sort of vagueness that 
+prompts us to turn to mathematical models. \par A major goal will be to give, within 
+a model, a precise version of this criterion. The questions (about our model) we 
+will initially be most concerned with are these:
+
+\begin{flushleft}
+1. What does it mean for one sentence to \textbf{“follow logically”} from certain others? \\
+2. If a sentence does follow logically from certain others, what methods of
+proof might be necessary to establish this fact?\\
+3. Is there a gap between what we can  \textbf{proof}  in an axiomatic system (say for
+the natural numbers) and what is  \textbf{true}  the natural numbers?\\
+4. What is the connection between logic and computability?
+\end{flushleft}
+
+\chapter{Sentential Logic}
+
+\section{Language of Sentential Logic}
+\begin{definition}
+  The five symbols: $\neg$, $\lor$, $\land$, $\rightarrow$ and $\leftrightarrow$ are 
+  called $\textit{sentential connective symbols}$. The sentential connective symbols, 
+together with the parentheses, are the $\textit{logical symbols}$. The sentence symbols are
+called $\textit{parameters}$(nonlogical symbols). 
+\end{definition}
+
+\begin{definition}
+  \textbf{Well formed formula} satisfies the following consequences:
+  \begin{enumerate}[label=\alph*)]
+  \item every sentence symbol is a wff.
+  \item if $\alpha$ and $\beta$ are wffs, the $\alpha\rightarrow \beta$, $\neg \alpha$, 
+$\alpha \leftrightarrow \beta$, $\alpha \land \beta$, $\alpha \lor  \beta$ are also wffs.
+  \item 
+  \end{enumerate}
+
+
+\end{definition}
+
+
+
+
+
+\chapter{More Results}
+
+\section{Propositions and Corollaries}
+
+\begin{proposition}\label{prop:rational}
+The set of rational numbers $\mathbb{Q}$ is dense.
+\end{proposition}
+
+\begin{corollary}
+There is a rational number between any two real numbers.
+\end{corollary}
+
+\end{document}

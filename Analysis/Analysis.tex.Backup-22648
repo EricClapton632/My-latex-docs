@@ -1,0 +1,178 @@
+
+\documentclass[12pt, a4paper, oneside]{book}
+
+% 数学与符号支持
+
+\usepackage{amsmath, amssymb, amsfonts, bm}
+
+\usepackage{mathrsfs}
+
+\usepackage{enumitem} 
+
+% 图形
+
+\usepackage{graphicx}
+
+% 页边距
+
+\usepackage{geometry}
+
+\geometry{margin=2.5cm}
+
+% 标题格式
+
+\usepackage{titlesec}
+
+% 超链接
+
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+
+% 自动翻译引用前缀（cref）
+
+\usepackage{cleveref}
+
+
+% -------------------------
+
+
+% 定义定理环境（统一编号） - AMS 推荐风格
+
+% -------------------------
+\usepackage{amsthm}
+
+
+% 定理类：斜体（italic）正文
+
+
+\theoremstyle{plain}
+
+
+\newtheorem{theorem}{Theorem}[section]
+
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newtheorem{proposition}[theorem]{Proposition}
+
+% 定义类：正体（upright）正文
+
+\theoremstyle{definition}
+
+\newtheorem{definition}[theorem]{Definition}
+
+\newtheorem{example}[theorem]{Example}
+
+\newtheorem{remark}[theorem]{Remark}
+
+\newtheorem{conclusion}[theorem]{Conclusion}
+
+\newtheorem{solution}[theorem]{Solution}
+
+% 备注类：标题斜体 + 正文正体
+
+%\theoremstyle{remark}
+
+% 证明环境默认存在（含自动小方块）
+
+% -------------------------
+
+% cleveref 中文化设置（可根据需要改为英文或保留）
+
+% -------------------------
+
+\crefname{theorem}{Theorem}{Theorems}
+
+\crefname{lemma}{Lemma}{Lemmas}
+
+\crefname{corollary}{Corollary}{Corollaries}
+
+\crefname{proposition}{Proposition}{Propositions}
+
+\crefname{definition}{Definition}{Definitions}
+
+\crefname{example}{Example}{Examples}
+
+\crefname{remark}{Remark}{Remarks}
+
+\crefname{equation}{Equation}{Equations}
+
+% -------------------------
+
+% 正文开始
+
+% -------------------------
+
+\begin{document}
+
+% -------------------------
+
+% 封面
+
+% -------------------------
+
+\begin{titlepage}
+
+\centering
+
+\includegraphics[width=0.6\textwidth]{cover.jpg}\\
+
+\vspace{2cm}
+
+{\Huge\bfseries Logic\par}
+
+\vspace{1.5cm}
+
+{\Large introduction to symbol logic\par}
+
+\vspace{2cm}
+
+{\Large\itshape Eric Clapton\par}
+
+\vfill
+
+{\large \today}
+
+\end{titlepage}
+
+
+
+% -------------------------
+
+% 前言
+
+% -------------------------
+
+\chapter*{Preface}
+
+\addcontentsline{toc}{chapter}{Preface}
+
+
+
+This is an example of a math document written in \LaTeX{} using \texttt{amsthm}, supporting unified numbering for theorems, definitions, and examples, with \texttt{cleveref} for auto-referencing.
+
+
+
+\vspace{1cm}
+
+\begin{flushright}
+
+--- Eric
+
+\end{flushright}
+
+  
+
+% -------------------------
+
+% 目录
+
+% -------------------------
+
+\tableofcontents
+\chapter{Foundation}
+\section{logic}
+
+
+
+\end{document}

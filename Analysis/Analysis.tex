@@ -1,0 +1,226 @@
+%
+
+\documentclass[12pt, a4paper, oneside]{book}
+
+% 数学与符号支持
+
+\usepackage{amsmath, amssymb, amsfonts, bm}
+
+\usepackage{mathrsfs}
+
+\usepackage{enumitem} 
+
+% 图形
+
+\usepackage{graphicx}
+
+% 页边距
+
+\usepackage{geometry}
+
+\geometry{margin=2.5cm}
+
+% 标题格式
+
+\usepackage{titlesec}
+
+% 超链接
+
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+
+% 自动翻译引用前缀（cref）
+
+\usepackage{cleveref}
+
+
+% -------------------------
+
+
+% 定义定理环境（统一编号） - AMS 推荐风格
+
+% -------------------------
+\usepackage{amsthm}
+
+
+% 定理类：斜体（italic）正文
+
+\usepackage{parskip}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{1em}
+
+
+\theoremstyle{plain}
+
+
+\newtheorem{theorem}{Theorem}[section]
+
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newtheorem{proposition}[theorem]{Proposition}
+
+% 定义类：正体（upright）正文
+
+\theoremstyle{definition}
+
+\newtheorem{definition}[theorem]{Definition}
+
+\newtheorem{example}[theorem]{Example}
+
+\newtheorem{remark}[theorem]{Remark}
+
+\newtheorem{conclusion}[theorem]{Conclusion}
+
+\newtheorem{solution}[theorem]{Solution}
+
+% 备注类：标题斜体 + 正文正体
+
+%\theoremstyle{remark}
+
+% 证明环境默认存在（含自动小方块）
+
+% -------------------------
+
+% cleveref 中文化设置（可根据需要改为英文或保留）
+
+% -------------------------
+
+\crefname{theorem}{Theorem}{Theorems}
+
+\crefname{lemma}{Lemma}{Lemmas}
+
+\crefname{corollary}{Corollary}{Corollaries}
+
+\crefname{proposition}{Proposition}{Propositions}
+
+\crefname{definition}{Definition}{Definitions}
+
+\crefname{example}{Example}{Examples}
+
+\crefname{remark}{Remark}{Remarks}
+
+\crefname{equation}{Equation}{Equations}
+
+% -------------------------
+
+% 正文开始
+
+% -------------------------
+
+\begin{document}
+
+% -------------------------
+
+% 封面
+
+% -------------------------
+
+\begin{titlepage}
+
+\centering
+
+\includegraphics[width=0.6\textwidth]{cover.jpg}\\
+
+\vspace{2cm}
+
+{\Huge\bfseries Logic\par}
+
+\vspace{1.5cm}
+
+{\Large introduction to symbol logic\par}
+
+\vspace{2cm}
+
+{\Large\itshape Eric Clapton\par}
+
+\vfill
+
+{\large \today}
+
+\end{titlepage}
+
+
+
+% -------------------------
+
+% 前言
+
+% -------------------------
+
+\chapter*{Preface}
+
+\addcontentsline{toc}{chapter}{Preface}
+
+
+
+This is an example of a math document written in \LaTeX{} using \texttt{amsthm}, supporting unified numbering for theorems, definitions, and examples, with \texttt{cleveref} for auto-referencing.
+
+
+
+\vspace{1cm}
+
+\begin{flushright}
+
+--- Eric
+
+\end{flushright}
+
+  
+
+% -------------------------
+
+% 目录
+
+% -------------------------
+
+\tableofcontents
+\chapter{Foundation}
+\section{Fundamentals of Logic}
+
+\textbf{Statements} can be meaningfully claimed to be true or false. \par
+If $E(x)$ is an expression which becomes a statement when $x$ is replaced by 
+an object or class, then $E$ is a \textbf{property}.\par
+
+We write $\exists! x\in X:E(x)$ when exactly one object $\in X$ has property $E$ exists.\par
+
+Let $A$ and $B$ be statements. Then we can define a new \textbf{statement} implication :
+$$ (A\rightarrow B):= (\neg A) \lor B $$
+
+\section{Sets}
+
+If $X \subseteq Y$ and $X \neq Y$, then $X$ is called \textbf{proper subset} of $Y$.
+We denote this relationship by $X \subset Y$.   \par 
+
+If $X$ is a set and $E$ is a property then $\{x\in X; E(x)\}$ is the subset 
+of $X$ consisting of all elements $x$ of $X$ such that $E(x)$ is true. Then the set:
+$$ \phi_X := \{x\in X ; x\neq x\}$$
+is called the \textbf{empty subset} of $X$. \\
+
+\begin{remark}
+    Let $E$ be a property, then 
+    $$ x\in \phi_X \rightarrow E(x) $$ is true for each $x \in X$   
+\end{remark}
+
+\section{The Power Set}
+The power set of $X$ is the set consists of all the subsets of $X$. Sometimes it's written 
+$2^X$.   
+
+\section{Families of Sets}
+Let $\mathsf{A}$ be a noempty set and for each $\alpha \in \mathsf{A}$, let $\mathsf{A}_\alpha $ 
+be a set. Then $\{A_\alpha ;\alpha \in \mathsf{A}$ is called a \textbf{family of sets} and 
+$\mathsf{A}$ is an \textbf{index set} for this family.  
+
+\section{function}
+A \textbf{function} \tetxbf{from} $X$ \textbf{to} $Y$ is a rule which, for each element
+of $X$, specifies exactly one element of $Y$. The set $X$ is called the \textbf{domain}
+of $f$ and $Y$ is called \textbf{codomain} of $f$. And 
+$$ im(f):=\{y\in Y;\exists x\in X:y=f(x)\}$$
+is called the \textbf{image} of $f$.
+
+\begin{remark}
+    we should notice that the image of $f$ is not equal to the codomain of $f$.  
+\end{remark}
+
+
+\end{document}

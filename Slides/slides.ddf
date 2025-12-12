@@ -1,0 +1,5 @@
+[Info]
+InputEncoding=UTF8
+Source=slides.tex
+[Settings]
+TeXFormat=e-LaTeX 2e

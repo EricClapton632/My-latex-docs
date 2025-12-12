@@ -1,0 +1,227 @@
+\documentclass[12pt, a4paper, oneside]{book}
+
+% 数学与符号支持
+\usepackage{amsmath, amssymb, amsfonts, bm}
+\usepackage{mathrsfs}
+
+% 图形
+\usepackage{graphicx}
+
+% 页边距
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\usepackage{epigraph}
+
+
+% 标题格式
+\usepackage{titlesec}
+
+% 超链接
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+
+% 自动翻译引用前缀（cref）
+\usepackage{cleveref}
+
+% -------------------------
+% 定义定理环境（统一编号） - AMS 推荐风格
+% -------------------------
+\usepackage{amsthm}
+
+% 定理类：斜体（italic）正文
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+% 定义类：正体（upright）正文
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{solution}[theorem]{Solution}
+
+% 备注类：标题斜体 + 正文正体
+%\theoremstyle{remark}
+
+
+
+% 证明环境默认存在（含自动小方块）
+
+% -------------------------
+% cleveref 中文化设置（可根据需要改为英文或保留）
+% -------------------------
+\crefname{theorem}{Theorem}{Theorems}
+\crefname{lemma}{Lemma}{Lemmas}
+\crefname{corollary}{Corollary}{Corollaries}
+\crefname{proposition}{Proposition}{Propositions}
+\crefname{definition}{Definition}{Definitions}
+\crefname{example}{Example}{Examples}
+\crefname{remark}{Remark}{Remarks}
+\crefname{equation}{Equation}{Equations}
+
+% -------------------------
+% 正文开始
+% -------------------------
+
+\begin{document}
+
+\begin{titlepage}
+  \centering
+  \includegraphics[width=0.6\textwidth]{cover.jpg}\\
+  \vspace{2cm}
+  {\Huge\bfseries Notes for Linear Algebra\par}
+  \vspace{1.5cm}
+  %{\Large 副标题（可选）\par}
+  %\vspace{2cm}
+  {\Large\itshape Eric Clapton\par}
+  \vfill
+ % {\large 出版社名称\\ \today}
+\end{titlepage}
+
+\chapter*{Preface}
+\addcontentsline{toc}{chapter}{Preface}
+
+The cover is from the album \textbf{\textit{Dark side of the Moon}} by \textit{Pink Floyd}.
+
+\vspace{1cm}
+\begin{flushright}
+    --- Eric
+\end{flushright}
+
+\tableofcontents
+
+\chapter{Introduction}
+
+\setlength{\unitlength}{1pt}
+\setlength{\epigraphwidth}{12cm}
+
+\epigraph{“But the greatest thing by far is to have a command of metaphor. This alone cannot be imparted by another; it is the mark of genius, for to make good metaphors implies an eye for resemblances.”}{\textit{— Aristotle, Poetics, 1459a7-10, tr. by S.H. Butcher.}}
+
+
+
+\section{Why is Linear Algebra important? }
+
+
+\begin{example}{matrix and information}
+  $$\begin{array}
+{cccccc}\mathrm{class}\setminus\mathrm{student} & 1 & 2 & 3 & 4 & 5 \\
+1 & 1 & 0 & 0 & 1 & 1 \\
+2 & 0 & 1 & 1 & 0 & 1 \\
+3 & 1 & 0 & 1 & 0 & 1 \\
+4 & 1 & 0 & 0 & 1 & 1
+\end{array}$$
+    we have 4 students and 5 classes,
+    1 implies this student is in the class while 0 means not.
+    $$A=
+\begin{bmatrix}
+1 & 0 & 0 & 1 & 1 \\
+0 & 1 & 1 & 0 & 1 \\
+1 & 0 & 1 & 0 & 1 \\
+1 & 0 & 0 & 1 & 1
+\end{bmatrix}.$$
+$A_{ij}=1$ means the $i$th student is in the $j$th class, 
+sum the row we can get the number of classes a student attends, 
+sum the column we can get the number of students a class have. 
+Our question is how can we calculate the number of students that take both
+class 1 and 3? With a simple matrix we can easily get the answer. But if there are
+thousands of students or class what way we should use? 
+Look at this matrix multiplication. 
+$$A^TA=
+\begin{bmatrix}
+1 & 0 & 1 & 1 \\
+0 & 1 & 0 & 0 \\
+0 & 1 & 1 & 0 \\
+1 & 0 & 0 & 1 \\
+1 & 1 & 1 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 & 0 & 1 & 1 \\
+0 & 1 & 1 & 0 & 1 \\
+1 & 0 & 1 & 0 & 1 \\
+1 & 0 & 0 & 1 & 1
+\end{bmatrix}=
+\begin{bmatrix}
+3 & 0 & 1 & 2 & 3 \\
+0 & 1 & 1 & 0 & 1 \\
+1 & 1 & 2 & 0 & 2 \\
+2 & 0 & 0 & 2 & 2 \\
+3 & 1 & 2 & 2 & 4
+\end{bmatrix}$$
+This matrix is symmetric, Next, look at the diagonal entries: 3, 1, 2, 2, 4 - these give the total enrollments
+in class 1, 2, 3, 4, and 5. Next, let's look at the entry in row 1, column
+4. This is a 2. It's also how many students are enrolled in both classes 1
+and 4. In fact, you can check that the $ij$th entry of $A^T A$ is the number
+of students enrolled in both class $i$ and class $j$.
+  \end{example}
+
+  \begin{proof}
+    if the $ij$th entry of $p\times q$ matrix $B$ is $B_{ij}$ 
+    and the $ij$th entry of $q\times r$ matrix $C$ is $C_{ij}$
+    then the $ij$th entry of $p\times r$ matrix $BC$ is $\sum_{\ell=1}^qB_{i\ell}C_{\ell j}$. 
+    If A is a $m\times n$ matrix then $A^T$ is a $n\times m$ matrix, 
+    so $(A^TA)_{ij}=\sum_{\ell=1}^m A_{i\ell}^T A_{\ell j}=
+    \sum_{\ell=1}^m A_{\ell i} A_{\ell j}$. 
+    $A_{\ell i} A_{\ell j}=1$ means that $A_{\ell i} = A_{\ell j}=1$. 
+    So it means that the $\ell$th student is in the $i$ class and the 
+    $\ell$th student is in the $j$th class. So we can check the $(A^TA)_{ij}$ 
+    entry to see the number of students who attends both the $i$th and $j$th class. 
+
+  \end{proof}
+
+\section{Graphs and Matrices}
+Encoding a graph into a matrix.
+
+\begin{definition}
+    A \textbf{Graph} is a pair $(V,E)$, where $V$ is a set of textbf{vertices} and 
+    E is a subset of $V\times V$. That is: E is a subset of ordered pairs$(u,v)$ 
+    where $u$ and $v$ are vertices. Elements of E are called \textbf{edges or links} 
+    $(u,v)\in E$ means that $u$ and $v$ are connected. We require that $(u,u)\notin E$ 
+    $(u,v)\in E $ if and only if $(v,u)\in E$. That means we consider undirected graphs.
+    
+    A \textbf{Path} is a finite sequence of vertices$(i_1,i_2,i_3, \dots ,i_k)$ 
+    that $(i_j,i_{j+1})$ is an textbf{edge}. In other words, a path is a sequence of
+    vertices in the graph such that each vertex is connected to the following
+    vertex. The textbf{length}of a path is the number of edges that we travel along the path. 
+    
+    The \textbf{Degree} of a vertex $i$ is the number of vertices that are connected to $i$, 
+    we write deg$i$ for the degree of $i$.  
+    \end{definition}
+
+    \begin{definition}
+      The adjacency matrix $A$ of a graph$(V,E)$ has entries given by:
+      $$A_{ij}=
+\begin{cases}
+1 & \mathrm{if}\left(i,j\right)\in E \\
+0 & \mathrm{if}\left(i,j\right)\notin E 
+\end{cases}$$
+Notice that the entries in the diagonal are all 0 because we do not consider loops. 
+And the adjacency matrix is symmetric because we consider undirected graph. 
+
+      
+    \end{definition}
+    
+    
+    \begin{proof}
+    Suppose there are two zero vectors $\mathbf{0}$ and $\mathbf{0}'$. Then:
+    \[
+    \mathbf{0} + \mathbf{0}' = \mathbf{0}', \quad \text{by definition of $\mathbf{0}$}
+    \]
+    But also:
+    \[
+    \mathbf{0} + \mathbf{0}' = \mathbf{0}, \quad \text{by definition of $\mathbf{0}'$}
+    \]
+    Hence, $\mathbf{0} = \mathbf{0}'$, proving uniqueness.
+    \end{proof}
+    
+    \begin{remark}
+    The zero vector is a specific element in the space, not an absence of element.
+    \end{remark}
+    
+    \begin{conclusion}
+    Every vector space has a unique zero vector satisfying $v + 0 = v$ for all $v$.
+    \end{conclusion}
+\end{document}
+    
